@@ -18,10 +18,20 @@
 
 package org.spin.hr.engine;
 
-import java.util.Map;
+import java.util.*;
 
-import org.eevolution.hr.model.MHRProcess;
 import org.spin.hr.util.RuleInterface;
+import org.eevolution.hr.model.*;
+import org.spin.model.*;
+import org.adempiere.model.*;
+import org.spin.util.*;
+import org.compiere.util.*;
+import org.eevolution.model.*;
+import org.compiere.model.*;
+import java.math.*;
+import java.sql.*;
+import org.spin.hr.util.RuleInterface;
+import org.eevolution.hr.model.MHRProcess;
 
 
 
@@ -39,14 +49,17 @@ public class groovy_R_ISR implements RuleInterface {
 		
 		double result = 0;
 		description = null;
-		Double ingresosGravados =  process.movements.get(1000215).getAmount().doubleValue();
-		if (ingresosGravados <=0) return 0.00;
+		Double  ingresosGravados = process.getConcept("R_SBAS_NOMINA_MENOSAFPISS");
+		if (ingresosGravados <=0) ingresosGravados = 0.01;
 		
-		Double valorrebaja = process.getList("ImpuestoUnico", ingresosGravados, "2");
-		Double porcentaje = process.getList("ImpuestoUnico", ingresosGravados, "1");
-		Double isr = ingresosGravados*(porcentaje);
+				        Double valorrebaja = process.getList("ImpuestoUnico", ingresosGravados, "2");
+				        Double porcentaje = process.getList("ImpuestoUnico", ingresosGravados, "1");
+				        Double isr = ingresosGravados*(porcentaje);
 				        isr  = isr - valorrebaja;
-		result = isr;
+		
+		BigDecimal bd = BigDecimal.valueOf(isr);
+		    bd = bd.setScale(0, RoundingMode.HALF_UP);
+		result =bd.doubleValue() ;
 		return result;
 	}
 

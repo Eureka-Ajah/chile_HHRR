@@ -28,17 +28,15 @@ import org.compiere.model.*;
 import java.math.*;
 import java.sql.*;
 import org.spin.hr.util.RuleInterface;
-import org.eevolution.hr.model.MHREmployee;
 import org.eevolution.hr.model.MHRProcess;
 
 
 
-/** Generated Process for (groovy:R_Indemnizacion Provision para indemnizacion)
- *  Description: Usado en R_Indemnizacion
+/** Generated Process for (groovy:R_Mutual Mutual)
  *  @author ADempiere (generated) 
  *  @version Release 3.9.4
  */
-public class groovy_R_Indemnizacion implements RuleInterface {
+public class groovy_R_Mutual implements RuleInterface {
 
 	String description = null;
 
@@ -47,20 +45,13 @@ public class groovy_R_Indemnizacion implements RuleInterface {
 		
 		double result = 0;
 		description = null;
-				description = null;
-				Double salarioMinimo = process.getConcept("P_SALMIN");
-				        Double max = salarioMinimo*4;
-				        Double salario =process.getConcept("P_BAS") + (process.getConcept("R_BonifiacionFija")*process.getConcept("P_Factor_Nomina"));
-				        MHREmployee employee = ((MHREmployee) engineContext.get("_HR_Employee"));
-				        Integer diastrabajados = process.getDays( employee.getStartDate(),process.getDateAcct());
-				       // Double diastrabajados = process.getWorkingDays();
-				        Double years = (diastrabajados.doubleValue() / 365);
-				        Integer yearsTotal = new Integer(years.intValue());
-				        if (yearsTotal == 0) yearsTotal = 1;
-				        Double indemnizacion = (yearsTotal*salario)>max? max:(yearsTotal*salario);
-				        indemnizacion = indemnizacion/ (24);
-				        result =  indemnizacion;
-				return result;
+		Double mutualRate = process.getConcept("P_Mutual");
+		Double salarioCalculado =  process.getConcept("R_Imponibles");
+		Double max = process.getConcept("R_MaxAFPSalud");
+		Double base = salarioCalculado > max? max:salarioCalculado;
+		        Double mutualTotal =base * mutualRate;
+		        result = mutualTotal ;
+		return result;
 	}
 
 	@Override

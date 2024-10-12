@@ -18,10 +18,17 @@
 
 package org.spin.hr.engine;
 
-import java.util.Map;
-
-import org.eevolution.hr.model.MHRProcess;
+import java.util.*;
+import org.spin.model.*;
+import org.adempiere.model.*;
+import org.spin.util.*;
+import org.compiere.util.*;
+import org.eevolution.model.*;
+import org.compiere.model.*;
+import java.math.*;
+import java.sql.*;
 import org.spin.hr.util.RuleInterface;
+import org.eevolution.hr.model.MHRProcess;
 
 
 
@@ -40,10 +47,10 @@ public class groovy_R_ISAPRE_UF implements RuleInterface {
 		description = null;
 		Double  rate = process.getConcept("P_ISAPRE_UF");
 		if (rate==0.00) return 0.00;
-		Double  UF =process.movements.get(1000274).getAmount().doubleValue();
+		Double  UF = process.getConcept("R_UF");
 		Double amount = UF*rate;
-		Double  isss =  process.movements.get(1000178).getAmount().doubleValue();
-		result = amount -isss ;
+		Double salud = process.getConcept("R_ISSS_EP");
+		result = amount - salud;
 		return result;
 	}
 

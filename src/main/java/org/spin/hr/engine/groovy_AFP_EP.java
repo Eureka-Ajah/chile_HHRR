@@ -18,10 +18,18 @@
 
 package org.spin.hr.engine;
 
-import java.util.Map;
+import java.util.*;
 
-import org.eevolution.hr.model.MHRProcess;
 import org.spin.hr.util.RuleInterface;
+import org.eevolution.hr.model.MHRProcess;
+import org.spin.model.*;
+import org.adempiere.model.*;
+import org.spin.util.*;
+import org.compiere.util.*;
+import org.eevolution.model.*;
+import org.compiere.model.*;
+import java.math.*;
+import java.sql.*;
 
 
 
@@ -50,10 +58,13 @@ public class groovy_AFP_EP implements RuleInterface {
 		double result = 0;
 		description = null;
 		Double AFPRate = process.getConcept("R_AFP_Rate"); 
-		        Double salarioCalculado = process.movements.get(1000307).getAmount().doubleValue();
-			Double base = salarioCalculado > process.movements.get(1000242).getAmount().doubleValue()?process.movements.get(1000242).getAmount().doubleValue():salarioCalculado;
-		        Double AFPTotal =base * AFPRate;
-		        result = AFPTotal ;
+		        Double salarioCalculado =  process.getConcept("R_Imponibles");   
+		Double max =   process.getConcept("R_MaxAFPSalud");   
+		Double base = salarioCalculado > max?max:salarioCalculado;
+		 Double AFPTotal =base * (AFPRate/100);
+		        BigDecimal bd = BigDecimal.valueOf(AFPTotal);
+		        bd = bd.setScale(0, RoundingMode.HALF_UP);
+		        result = bd.doubleValue();
 		return result;
 	}
 

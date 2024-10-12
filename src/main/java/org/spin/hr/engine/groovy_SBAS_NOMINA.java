@@ -19,21 +19,21 @@
 package org.spin.hr.engine;
 
 import java.util.*;
-
-import org.spin.hr.util.RuleInterface;
 import org.spin.model.*;
 import org.adempiere.model.*;
 import org.spin.util.*;
 import org.compiere.util.*;
-import org.eevolution.hr.model.*;
+import org.eevolution.model.*;
 import org.compiere.model.*;
 import java.math.*;
 import java.sql.*;
+import org.spin.hr.util.RuleInterface;
+import org.eevolution.hr.model.MHRProcess;
 
 
 
 /** Generated Process for (groovy:SBAS_NOMINA Sueldo básico de Nomina General)
- *  Help: Base para calcular gratificacion
+ *  Help: Gewichtetes festes Einkommen
  *  @author ADempiere (generated) 
  *  @version Release 3.9.4
  */
@@ -46,7 +46,7 @@ public class groovy_SBAS_NOMINA implements RuleInterface {
 		
 		double result = 0;
 		description = null;
-		double salarioActual = process.getConcept("R_SBAS") +  process.getConcept("R_BonifiacionFija"); 
+		double salarioActual = process.getConceptCategory("IngresosFijos");
 		double salarioDiario = process.getConcept("R_SBAS_DAY");
 		double diasAusentes = process.getConcept("O_DiasAusentes");
 		double ded1 = diasAusentes*salarioDiario;

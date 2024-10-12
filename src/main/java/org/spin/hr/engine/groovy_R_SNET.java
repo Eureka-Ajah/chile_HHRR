@@ -18,10 +18,17 @@
 
 package org.spin.hr.engine;
 
-import java.util.Map;
-
-import org.eevolution.hr.model.MHRProcess;
+import java.util.*;
+import org.spin.model.*;
+import org.adempiere.model.*;
+import org.spin.util.*;
+import org.compiere.util.*;
+import org.eevolution.model.*;
+import org.compiere.model.*;
+import java.math.*;
+import java.sql.*;
 import org.spin.hr.util.RuleInterface;
+import org.eevolution.hr.model.MHRProcess;
 
 
 

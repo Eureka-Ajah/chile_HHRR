@@ -18,15 +18,20 @@
 
 package org.spin.hr.engine;
 
-import java.math.BigDecimal;
-import java.sql.Timestamp;
-import java.util.Map;
-
+import java.util.*;
 import org.compiere.model.MConversionRate;
+import org.spin.model.*;
+import org.adempiere.model.*;
 import org.compiere.util.TimeUtil;
-import org.eevolution.hr.model.MHRProcess;
-import org.spin.hr.util.RuleInterface;
+import org.spin.util.*;
+import org.compiere.util.*;
+import org.eevolution.model.*;
+import org.compiere.model.*;
+import java.math.*;
+import java.sql.*;
 
+import org.spin.hr.util.RuleInterface;
+import org.eevolution.hr.model.MHRProcess;
 
 
 /** Generated Process for (groovy:R_UF R_UF)

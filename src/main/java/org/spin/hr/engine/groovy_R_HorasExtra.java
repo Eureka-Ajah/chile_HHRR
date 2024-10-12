@@ -18,10 +18,17 @@
 
 package org.spin.hr.engine;
 
-import java.util.Map;
-
-import org.eevolution.hr.model.MHRProcess;
+import java.util.*;
+import org.spin.model.*;
+import org.adempiere.model.*;
+import org.spin.util.*;
+import org.compiere.util.*;
+import org.eevolution.model.*;
+import org.compiere.model.*;
+import java.math.*;
+import java.sql.*;
 import org.spin.hr.util.RuleInterface;
+import org.eevolution.hr.model.MHRProcess;
 
 
 
@@ -43,7 +50,7 @@ public class groovy_R_HorasExtra implements RuleInterface {
 		double horasExtraDomingo = (salarioHora*process.getConcept("P_HorasExtra_Domingo"))*process.getConcept("O_HorasExtraDomingo");
 		double horasExtraNocturnas = (salarioHora*process.getConcept("P_HorasExtra_Nocturnas"))*process.getConcept("O_HorasExtraNocturnas");
 		
-		result =  horasExtra  + horasExtraDomingo  + horasExtraNocturnas ;
+		result= horasExtra  + horasExtraDomingo  + horasExtraNocturnas ;
 		return result;
 	}
 

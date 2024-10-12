@@ -19,16 +19,16 @@
 package org.spin.hr.engine;
 
 import java.util.*;
-
-import org.spin.hr.util.RuleInterface;
 import org.spin.model.*;
 import org.adempiere.model.*;
 import org.spin.util.*;
 import org.compiere.util.*;
-import org.eevolution.hr.model.*;
+import org.eevolution.model.*;
 import org.compiere.model.*;
 import java.math.*;
 import java.sql.*;
+import org.spin.hr.util.RuleInterface;
+import org.eevolution.hr.model.MHRProcess;
 
 
 
@@ -45,7 +45,7 @@ public class groovy_R_Tributable implements RuleInterface {
 		
 		double result = 0;
 		description = null;
-		Double  salario = process.getConcept("R_Imponible");
+		Double  salario = process.getConceptCategory("IngresosTributables") ;
 		result = salario;
 		return result;
 	}

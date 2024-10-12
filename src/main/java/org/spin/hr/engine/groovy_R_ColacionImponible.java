@@ -18,10 +18,17 @@
 
 package org.spin.hr.engine;
 
-import java.util.Map;
-
-import org.eevolution.hr.model.MHRProcess;
+import java.util.*;
+import org.spin.model.*;
+import org.adempiere.model.*;
+import org.spin.util.*;
+import org.compiere.util.*;
+import org.eevolution.model.*;
+import org.compiere.model.*;
+import java.math.*;
+import java.sql.*;
 import org.spin.hr.util.RuleInterface;
+import org.eevolution.hr.model.MHRProcess;
 
 
 
@@ -38,9 +45,9 @@ public class groovy_R_ColacionImponible implements RuleInterface {
 		
 		double result = 0;
 		description = null;
-		Double maximo =  process.movements.get(1000274).getAmount().doubleValue()*4.2;
+		Double maximo =  process.getConceptType("R_UF")*4.2;
 			Double colacion = process.getConceptType("Colacion");
-			double diff = colacion>maximo?colacion-maximo:0.00;
+			Double diff = colacion>maximo?colacion-maximo:0.00;
 		result = diff ;
 		return result;
 	}

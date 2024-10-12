@@ -18,10 +18,17 @@
 
 package org.spin.hr.engine;
 
-import java.util.Map;
-
-import org.eevolution.hr.model.MHRProcess;
+import java.util.*;
+import org.spin.model.*;
+import org.adempiere.model.*;
+import org.spin.util.*;
+import org.compiere.util.*;
+import org.eevolution.model.*;
+import org.compiere.model.*;
+import java.math.*;
+import java.sql.*;
 import org.spin.hr.util.RuleInterface;
+import org.eevolution.hr.model.MHRProcess;
 
 
 
@@ -40,9 +47,10 @@ public class groovy_R_ISSS_PATRON implements RuleInterface {
 		double result = 0;
 		description = null;
 		Double SaludRate = process.getConcept("P_ISSS_PATRON");
-		Double salarioCalculado = process.movements.get(1000307).getAmount().doubleValue();
-			Double base = salarioCalculado >  process.movements.get(1000242).getAmount().doubleValue()? process.movements.get(1000242).getAmount().doubleValue():salarioCalculado;
-		        Double saludTotal =base * SaludRate;
+		Double max = process.getConcept("R_MaxAFPSalud");
+		Double salarioCalculado =  process.getConcept("R_Imponible");
+		Double base = salarioCalculado > max? max:salarioCalculado;
+		Double saludTotal =base * SaludRate;
 		        result = saludTotal ;
 		return result;
 	}

@@ -18,11 +18,18 @@
 
 package org.spin.hr.engine;
 
-import java.util.Map;
+import java.util.*;
+import org.spin.model.*;
+import org.adempiere.model.*;
+import org.spin.util.*;
+import org.compiere.util.*;
+import org.eevolution.model.*;
+import org.compiere.model.*;
+import java.math.*;
+import java.sql.*;
 
-import org.eevolution.hr.model.MHRProcess;
 import org.spin.hr.util.RuleInterface;
-
+import org.eevolution.hr.model.MHRProcess;
 
 
 /** Generated Process for (groovy:R_AFP_Rate R_AFP_Rate)
@@ -40,7 +47,7 @@ public class groovy_R_AFP_Rate implements RuleInterface {
 		description = null;
 		String afpvalue =process.getAttributeString("P_AFP_Empleado");
 		Integer afp = Integer.valueOf(afpvalue);
-		Double AFPRate = process.getList("AFP", afp, "1")/100;  
+		Double AFPRate = process.getList("AFP", afp, "1");
 		result = AFPRate ;
 		return result;
 	}
