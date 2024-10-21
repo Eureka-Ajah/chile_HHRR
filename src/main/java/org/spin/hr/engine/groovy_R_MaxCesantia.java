@@ -23,12 +23,11 @@ import org.spin.model.*;
 import org.adempiere.model.*;
 import org.spin.util.*;
 import org.compiere.util.*;
-import org.eevolution.model.*;
+import org.spin.hr.util.RuleInterface;
+import org.eevolution.hr.model.*;
 import org.compiere.model.*;
 import java.math.*;
 import java.sql.*;
-import org.spin.hr.util.RuleInterface;
-import org.eevolution.hr.model.MHRProcess;
 
 
 
@@ -45,11 +44,12 @@ public class groovy_R_MaxCesantia implements RuleInterface {
 		
 		double result = 0;
 		description = null;
-		double value = process.getConcept("R_UF")*process.getConcept("P_CIS");
-		BigDecimal bd = BigDecimal.valueOf(value);
-		    bd = bd.setScale(0, RoundingMode.HALF_UP);
-		result = bd.doubleValue();
-		return result;
+				description = null;
+				double value = process.getConcept("R_UF")*process.getConcept("P_CIS");
+				BigDecimal bd = BigDecimal.valueOf(value);
+				    bd = bd.setScale(0, RoundingMode.HALF_UP);
+				result = bd.doubleValue();
+				return result;
 	}
 
 	@Override

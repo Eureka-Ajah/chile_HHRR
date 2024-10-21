@@ -23,14 +23,11 @@ import org.spin.model.*;
 import org.adempiere.model.*;
 import org.spin.util.*;
 import org.compiere.util.*;
-import org.eevolution.model.*;
+import org.spin.hr.util.RuleInterface;
+import org.eevolution.hr.model.*;
 import org.compiere.model.*;
 import java.math.*;
 import java.sql.*;
-import org.spin.hr.util.RuleInterface;
-import org.eevolution.hr.model.MHREmployee;
-import org.eevolution.hr.model.MHRProcess;
-
 
 
 
@@ -61,20 +58,24 @@ public class groovy_R_ISSS_EP implements RuleInterface {
 		
 		double result = 0;
 		description = null;
-		Double saludTotal = 0.00; 
-		Boolean isPublicHealthInsurance =  ((MHREmployee) engineContext.get("_HR_Employee")).get_ValueAsBoolean("isPublicHealthInsurance");
-		if (isPublicHealthInsurance){
-		Double rate =  process.getConcept("P_ISSS_EP");
-		Double SaludRate = process.getConcept("P_ISSS_EP");
-		Double salarioCalculado =process.getConcept("R_Imponibles");
-		Double max = process.getConcept("R_MaxAFPSalud");
-			Double base = salarioCalculado > max?max:salarioCalculado;
-		saludTotal =base * SaludRate;
-		}
-		BigDecimal bd = BigDecimal.valueOf(saludTotal);
-		    bd = bd.setScale(0, RoundingMode.HALF_UP);
-		result =bd.doubleValue() ;
-		return result;
+				description = null;
+				Double saludTotal = 0.00; 
+				
+				MHREmployee employee = ((MHREmployee) engineContext.get("_HR_Employee"));
+				Boolean isPublicHealthInsurance = employee.get_ValueAsBoolean("isPublicHealthInsurance");
+		
+				if (isPublicHealthInsurance){
+				Double rate =  process.getConcept("P_ISSS_EP");
+				Double SaludRate = process.getConcept("P_ISSS_EP");
+				Double salarioCalculado =process.getConcept("R_Imponibles");
+				Double max = process.getConcept("R_MaxAFPSalud");
+					Double base = salarioCalculado > max?max:salarioCalculado;
+				saludTotal =base * SaludRate;
+				}
+				BigDecimal bd = BigDecimal.valueOf(saludTotal);
+				    bd = bd.setScale(0, RoundingMode.HALF_UP);
+				result =bd.doubleValue() ;
+				return result;
 	}
 
 	@Override

@@ -23,12 +23,11 @@ import org.spin.model.*;
 import org.adempiere.model.*;
 import org.spin.util.*;
 import org.compiere.util.*;
-import org.eevolution.model.*;
+import org.spin.hr.util.RuleInterface;
+import org.eevolution.hr.model.*;
 import org.compiere.model.*;
 import java.math.*;
 import java.sql.*;
-import org.spin.hr.util.RuleInterface;
-import org.eevolution.hr.model.MHRProcess;
 
 
 
@@ -45,11 +44,12 @@ public class groovy_R_MovilizacionImponible implements RuleInterface {
 		
 		double result = 0;
 		description = null;
-		Double maximo = process.getConcept("R_UF")*4.2;
-			Double movilizacion= process.getConceptType("Movilization");
-			double diff = movilizacion>maximo?movilizacion-maximo:0.00;
-		result = diff ;
-		return result;
+				description = null;
+				Double maximo = process.getConcept("R_UF")*4.2;
+					Double movilizacion= process.getConceptType("Movilization");
+					double diff = movilizacion>maximo?movilizacion-maximo:0.00;
+				result = diff ;
+				return result;
 	}
 
 	@Override

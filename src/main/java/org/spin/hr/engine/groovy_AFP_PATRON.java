@@ -23,12 +23,11 @@ import org.spin.model.*;
 import org.adempiere.model.*;
 import org.spin.util.*;
 import org.compiere.util.*;
-import org.eevolution.model.*;
+import org.spin.hr.util.RuleInterface;
+import org.eevolution.hr.model.*;
 import org.compiere.model.*;
 import java.math.*;
 import java.sql.*;
-import org.spin.hr.util.RuleInterface;
-import org.eevolution.hr.model.MHRProcess;
 
 
 
@@ -54,15 +53,16 @@ public class groovy_AFP_PATRON implements RuleInterface {
 		
 		double result = 0;
 		description = null;
-		String afpvalue =process.getAttributeString("P_AFP_Empleado");
-		Integer afp = Integer.valueOf(afpvalue);
-		Double AFPRate = process.getList("AFP", afp, "2")/100;  
-		Double salarioCalculado =  process.getConcept("R_Imponibles");
-		Double max = process.getConcept("R_MaxAFPSalud");
-		Double base = salarioCalculado > max?max:salarioCalculado;
-		
-		        Double AFPTotal =base * AFPRate;
-		        result = AFPTotal ;
+				description = null;
+				String afpvalue =process.getAttributeString("P_AFP_Empleado");
+				Integer afp = Integer.valueOf(afpvalue);
+				Double AFPRate = process.getList("AFP", afp, "2")/100;  
+				Double salarioCalculado =  process.getConcept("R_Imponibles");
+				Double max = process.getConcept("R_MaxAFPSalud");
+				Double base = salarioCalculado > max?max:salarioCalculado;
+				
+				        Double AFPTotal =base * AFPRate;
+				        result = AFPTotal ;
 		return result;
 	}
 

@@ -23,12 +23,12 @@ import org.spin.model.*;
 import org.adempiere.model.*;
 import org.spin.util.*;
 import org.compiere.util.*;
-import org.eevolution.model.*;
+import org.spin.hr.util.RuleInterface;
+import org.spin.hr.util.RuleInterface;
+import org.eevolution.hr.model.*;
 import org.compiere.model.*;
 import java.math.*;
 import java.sql.*;
-import org.spin.hr.util.RuleInterface;
-import org.eevolution.hr.model.MHRProcess;
 
 
 
@@ -45,13 +45,14 @@ public class groovy_R_CESANTIA_ER implements RuleInterface {
 		
 		double result = 0;
 		description = null;
-		Double cesantiaRate = process.getConcept("P_Cesantia_ER");
-		Double salarioCalculado =  process.getConcept("R_Imponibles");
-		Double max = process.getConcept("R_MaxAFPSalud");
-		Double base = salarioCalculado > max? max:salarioCalculado;    
-		Double cesantiaTotal =base * cesantiaRate;
-		        result = cesantiaTotal ;
-		return result;
+				description = null;
+				Double cesantiaRate = process.getConcept("P_Cesantia_ER");
+				Double salarioCalculado =  process.getConcept("R_Imponibles");
+				Double max = process.getConcept("R_MaxAFPSalud");
+				Double base = salarioCalculado > max? max:salarioCalculado;    
+				Double cesantiaTotal =base * cesantiaRate;
+				        result = cesantiaTotal ;
+				return result;
 	}
 
 	@Override

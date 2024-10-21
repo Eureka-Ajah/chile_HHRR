@@ -23,16 +23,15 @@ import org.spin.model.*;
 import org.adempiere.model.*;
 import org.spin.util.*;
 import org.compiere.util.*;
-import org.eevolution.model.*;
+import org.spin.hr.util.RuleInterface;
+import org.eevolution.hr.model.*;
 import org.compiere.model.*;
 import java.math.*;
 import java.sql.*;
-import org.spin.hr.util.RuleInterface;
-import org.eevolution.hr.model.MHRProcess;
 
 
 
-/** Generated Process for (groovy:R_Mutual Mutual)
+/** Generated Process for (groovy:R_Mutual groovy:R_Mutual)
  *  @author ADempiere (generated) 
  *  @version Release 3.9.4
  */
@@ -46,7 +45,7 @@ public class groovy_R_Mutual implements RuleInterface {
 		double result = 0;
 		description = null;
 		Double mutualRate = process.getConcept("P_Mutual");
-		Double salarioCalculado =  process.getConcept("R_Imponibles");
+		Double salarioCalculado =  process.getConcept("R_Imponible");
 		Double max = process.getConcept("R_MaxAFPSalud");
 		Double base = salarioCalculado > max? max:salarioCalculado;
 		        Double mutualTotal =base * mutualRate;

@@ -23,12 +23,11 @@ import org.spin.model.*;
 import org.adempiere.model.*;
 import org.spin.util.*;
 import org.compiere.util.*;
-import org.eevolution.model.*;
+import org.spin.hr.util.RuleInterface;
+import org.eevolution.hr.model.*;
 import org.compiere.model.*;
 import java.math.*;
 import java.sql.*;
-import org.spin.hr.util.RuleInterface;
-import org.eevolution.hr.model.MHRProcess;
 
 
 
@@ -46,7 +45,7 @@ public class groovy_R_SBAS_DAY implements RuleInterface {
 		double result = 0;
 		description = null;
 		int daysNet = process.getHR_Payroll().getHR_Contract().getNetDays();
-		double salarioDia = process.getConcept("P_BAS")/daysNet; result =  salarioDia;
+		double salarioDia = process.getConcept("R_SBAS")/daysNet; result =  salarioDia;
 		return result;
 	}
 

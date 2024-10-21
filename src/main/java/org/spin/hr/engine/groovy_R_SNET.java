@@ -23,12 +23,11 @@ import org.spin.model.*;
 import org.adempiere.model.*;
 import org.spin.util.*;
 import org.compiere.util.*;
-import org.eevolution.model.*;
+import org.spin.hr.util.RuleInterface;
+import org.eevolution.hr.model.*;
 import org.compiere.model.*;
 import java.math.*;
 import java.sql.*;
-import org.spin.hr.util.RuleInterface;
-import org.eevolution.hr.model.MHRProcess;
 
 
 
@@ -47,11 +46,16 @@ public class groovy_R_SNET implements RuleInterface {
 		
 		double result = 0;
 		description = null;
-		double salarioTotal = process.getConceptCategory("IngresosGravados") + process.getConceptCategory("IngresosNoGravados");
-		double deducciones = process.getConceptCategory("DeduccionesLegales");
+		System.out.println("R_SNET wird als Klasse asugefuehrt");
+		double salarioTotal = process.getConcept("R_SBAS_NOMINA") 
+				+ process.getConcept("R_Gratificacion") + process.getConceptType("Colacion") + process.getConceptType("Movilizacion");
+		double deducciones = process.getConceptCategory("DeduccionesLegales") - process.getConceptCategory("DeducionesAdicionales");
 		double prestamos = process.getConcept("R_PrestamosTotal");
+		
 				result =  salarioTotal  - prestamos  - deducciones;
-		return result;
+				BigDecimal bd = BigDecimal.valueOf(result);
+		        bd = bd.setScale(0, RoundingMode.HALF_UP);
+				return bd.doubleValue();
 	}
 
 	@Override

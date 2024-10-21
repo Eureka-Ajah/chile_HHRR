@@ -23,13 +23,12 @@ import org.spin.model.*;
 import org.adempiere.model.*;
 import org.spin.util.*;
 import org.compiere.util.*;
-import org.eevolution.model.*;
+import org.spin.hr.util.RuleInterface;
+import org.eevolution.hr.model.*;
 import org.compiere.model.*;
 import java.math.*;
 import java.sql.*;
 
-import org.spin.hr.util.RuleInterface;
-import org.eevolution.hr.model.MHRProcess;
 
 
 /** Generated Process for (groovy:R_ATEP R_ATEP)
@@ -45,13 +44,14 @@ public class groovy_R_ATEP implements RuleInterface {
 		
 		double result = 0;
 		description = null;
-		Double atepRate = process.getConcept("P_ATEP");
-		Double salarioCalculado =  process.getConcept("R_Imponibles");
-		Double max = process.getConcept("R_MaxAFPSalud");
-		Double base = salarioCalculado > max? max:salarioCalculado;    
-		Double atepTotal =base * atepRate;
-		        result = atepTotal ;
-		return result;
+				description = null;
+				Double atepRate = process.getConcept("P_ATEP");
+				Double salarioCalculado =  process.getConcept("R_Imponibles");
+				Double max = process.getConcept("R_MaxAFPSalud");
+				Double base = salarioCalculado > max? max:salarioCalculado;    
+				Double atepTotal =base * atepRate;
+				        result = atepTotal ;
+				return result;
 	}
 
 	@Override

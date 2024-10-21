@@ -23,13 +23,11 @@ import org.spin.model.*;
 import org.adempiere.model.*;
 import org.spin.util.*;
 import org.compiere.util.*;
-import org.eevolution.model.*;
+import org.spin.hr.util.RuleInterface;
+import org.eevolution.hr.model.*;
 import org.compiere.model.*;
 import java.math.*;
 import java.sql.*;
-import org.spin.hr.util.RuleInterface;
-import org.eevolution.hr.model.MHREmployee;
-import org.eevolution.hr.model.MHRProcess;
 
 
 
@@ -53,7 +51,6 @@ public class groovy_R_Indemnizacion implements RuleInterface {
 				        Double salario =process.getConcept("P_BAS") + (process.getConcept("R_BonifiacionFija")*process.getConcept("P_Factor_Nomina"));
 				        MHREmployee employee = ((MHREmployee) engineContext.get("_HR_Employee"));
 				        Integer diastrabajados = process.getDays( employee.getStartDate(),process.getDateAcct());
-				       // Double diastrabajados = process.getWorkingDays();
 				        Double years = (diastrabajados.doubleValue() / 365);
 				        Integer yearsTotal = new Integer(years.intValue());
 				        if (yearsTotal == 0) yearsTotal = 1;
