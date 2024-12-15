@@ -46,7 +46,7 @@ public class groovy_R_MovilizacionImponible implements RuleInterface {
 		description = null;
 				description = null;
 				Double maximo = process.getConcept("R_UF")*4.2;
-					Double movilizacion= process.getConceptType("Movilization");
+					Double movilizacion= process.getConcept("Movilization");
 					double diff = movilizacion>maximo?movilizacion-maximo:0.00;
 				result = diff ;
 				return result;

@@ -48,8 +48,9 @@ public class groovy_R_HorasExtra implements RuleInterface {
 		double horasExtra = (salarioHora*process.getConcept("P_HorasExtra"))*process.getConcept("O_HorasExtra");
 		double horasExtraDomingo = (salarioHora*process.getConcept("P_HorasExtra_Domingo"))*process.getConcept("O_HorasExtraDomingo");
 		double horasExtraNocturnas = (salarioHora*process.getConcept("P_HorasExtra_Nocturnas"))*process.getConcept("O_HorasExtraNocturnas");
+		double montomanual = process.getConcept("O_HorasExtrasMonto");
 		
-		return horasExtra  + horasExtraDomingo  + horasExtraNocturnas ;
+		return horasExtra  + horasExtraDomingo  + horasExtraNocturnas + montomanual ;
 	}
 
 	@Override

@@ -46,7 +46,7 @@ public class groovy_R_ColacionImponible implements RuleInterface {
 		description = null;
 				description = null;
 				Double maximo =  process.getConceptType("R_UF")*4.2;
-					Double colacion = process.getConceptType("Colacion");
+					Double colacion = process.getConcept("Colacion");
 					Double diff = colacion>maximo?colacion-maximo:0.00;
 				result = diff ;
 				return result;

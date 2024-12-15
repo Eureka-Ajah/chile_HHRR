@@ -41,7 +41,8 @@ public class groovy_R_SBAS implements RuleInterface {
 
 	@Override
 	public Object run(MHRProcess process, Map<String, Object> engineContext) {
-		
+		System.out.println("R_SNET wird als Klasse ausgefuehrt");
+
 		double result = 0;
 		description = null;
 		result =  process.getConceptCategory("ParametosSalarioBasico");

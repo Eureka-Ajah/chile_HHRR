@@ -50,7 +50,11 @@ public class groovy_R_ISAPRE_UF implements RuleInterface {
 				Double  UF = process.getConcept("R_UF");
 				Double amount = UF*rate;
 				Double salud = process.getConcept("R_ISSS_EP");
-				result = amount - salud;
+				Double total = amount - salud;
+
+				BigDecimal bd = BigDecimal.valueOf(total);
+				    bd = bd.setScale(0, RoundingMode.HALF_UP);
+				result =bd.doubleValue() ;
 				return result;
 	}
 

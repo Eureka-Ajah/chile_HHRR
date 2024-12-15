@@ -41,11 +41,16 @@ public class groovy_R_BonifiacionFija implements RuleInterface {
 
 	@Override
 	public Object run(MHRProcess process, Map<String, Object> engineContext) {
-		
+
 		double result = 0;
 		description = null;
-		result = process.getConcept("P_BonifiacionFija");
-		return result;
+
+		Double bonificacion = process.getConcept("P_BonifiacionFija");
+		int daysNet = process.getHR_Payroll().getHR_Contract().getNetDays();
+		double diasAusentes = process.getConcept("O_DiasAusentes");
+		double colacionDiaria = bonificacion/daysNet; 					
+		double ded1 = diasAusentes*colacionDiaria;
+		return bonificacion - ded1;
 	}
 
 	@Override

@@ -46,13 +46,12 @@ public class groovy_R_SNET implements RuleInterface {
 		
 		double result = 0;
 		description = null;
-		System.out.println("R_SNET wird als Klasse asugefuehrt");
-		double salarioTotal = process.getConcept("R_SBAS_NOMINA") 
-				+ process.getConcept("R_Gratificacion") + process.getConceptType("Colacion") + process.getConceptType("Movilizacion");
-		double deducciones = process.getConceptCategory("DeduccionesLegales") - process.getConceptCategory("DeducionesAdicionales");
-		double prestamos = process.getConcept("R_PrestamosTotal");
+		System.out.println("R_SNET wird als Klasse ausgefuehrt");
+		double salarioTotal = process.getConcept("R_SBAS_NOMINA") + process.getConcept("R_HorasExtra") 
+				+ process.getConcept("R_Gratificacion") + process.getConceptCategory("IngresosFijos");
+		double deducciones = process.getConceptCategory("DeduccionesLegales") + process.getConceptCategory("DeducionesAdicionales");
 		
-				result =  salarioTotal  - prestamos  - deducciones;
+				result =  salarioTotal  - deducciones;
 				BigDecimal bd = BigDecimal.valueOf(result);
 		        bd = bd.setScale(0, RoundingMode.HALF_UP);
 				return bd.doubleValue();

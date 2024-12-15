@@ -43,7 +43,9 @@ public class groovy_R_Gratificacion implements RuleInterface {
 	public Object run(MHRProcess process, Map<String, Object> engineContext) {
 		
 		double result = 0;
-		description = null;
+		description = null;		
+		System.out.println("R_Gratificacion wird als Klasse ausgefuehrt");
+
 				description = null;				
 				Double salario =process.getIsGratification();
 				int daysNet = process.getHR_Payroll().getHR_Contract().getNetDays();

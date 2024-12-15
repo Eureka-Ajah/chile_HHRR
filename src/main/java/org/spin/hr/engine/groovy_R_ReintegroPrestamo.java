@@ -45,6 +45,8 @@ public class groovy_R_ReintegroPrestamo implements RuleInterface {
 		double result = 0;
 		description = null;
 		Double rate = process.getConcept("P_ReintegroPrestamo");
+		if (rate == 0.0)
+			return result;
 				description = null;
 				Double total= 0.00; 
 				Double salarioCalculado =process.getConcept("R_SBAS_NOMINA_MENOSAFPISS");
