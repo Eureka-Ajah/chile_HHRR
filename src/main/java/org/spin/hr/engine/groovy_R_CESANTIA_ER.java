@@ -46,7 +46,9 @@ public class groovy_R_CESANTIA_ER implements RuleInterface {
 		double result = 0;
 		description = null;
 				description = null;
-				Double cesantiaRate = process.getConcept("P_Cesantia_ER");
+				MHRContract contract = (MHRContract)process.getHR_Payroll().getHR_Contract();
+				Boolean isFixedContract = contract.get_ValueAsBoolean("isFixedContract");
+				Double cesantiaRate = isFixedContract ? process.getConcept("P_Cesantia_ER_FixedContract"): process.getConcept("P_Cesantia_ER");
 				Double salarioCalculado =  process.getConcept("R_Imponibles");
 				Double max = process.getConcept("R_MaxAFPSalud");
 				Double base = salarioCalculado > max? max:salarioCalculado;    

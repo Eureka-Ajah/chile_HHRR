@@ -45,7 +45,7 @@ public class groovy_R_Mutual implements RuleInterface {
 		double result = 0;
 		description = null;
 		Double mutualRate = process.getConcept("P_Mutual");
-		Double salarioCalculado =  process.getConcept("R_Imponible");
+		Double salarioCalculado =  process.getConcept("R_Imponibles");
 		Double max = process.getConcept("R_MaxAFPSalud");
 		Double base = salarioCalculado > max? max:salarioCalculado;
 		        Double mutualTotal =base * mutualRate;
