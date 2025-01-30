@@ -47,8 +47,11 @@ public class groovy_R_SBAS_NOMINA_MENOSAFPISS implements RuleInterface {
 		description = null;
 				description = null;
 				Double  salario = process.getConcept("R_Tributable");
-				Double ded = process.getConceptCategory("DeduccionesLegales");
-				result = salario - ded;
+				Double ded = process.getConceptCategory("DeduccionesLegales"); 
+				Double dedsalud = process.getConceptCategory("DeduccionesSalud"); 
+				Double topesalud = 0.07*process.getConcept("P_Imponible")*process.getConcept("R_UF");
+				Double tributableSalud = dedsalud>topesalud?topesalud:dedsalud;
+				result = salario - ded - tributableSalud;
 		return result;
 	}
 
