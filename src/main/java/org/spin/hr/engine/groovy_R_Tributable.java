@@ -41,13 +41,12 @@ public class groovy_R_Tributable implements RuleInterface {
 
 	@Override
 	public Object run(MHRProcess process, Map<String, Object> engineContext) {
-		
+
 		double result = 0;
 		description = null;
-				description = null;
-				Double  salario = process.getConceptCategory("IngresosTributables") ;
-				result = salario;
-				return result;
+		Double  salario = process.getConceptCategory("IngresosTributables") ;
+		result = salario;
+		return result;
 	}
 
 	@Override

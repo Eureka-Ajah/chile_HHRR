@@ -31,24 +31,24 @@ import java.sql.*;
 
 
 
-/** Generated Process for (groovy:R_MaxCesantia R_MaxCesantia)
+/** Generated Process for (groovy:R_HorasExtra R_HorasExtra)
  *  @author ADempiere (generated) 
  *  @version Release 3.9.4
  */
-public class groovy_R_MaxCesantia implements RuleInterface {
+public class groovy_R_HorasExtraRegular implements RuleInterface {
 
 	String description = null;
 
 	@Override
 	public Object run(MHRProcess process, Map<String, Object> engineContext) {
-
+		
 		double result = 0;
 		description = null;
-		double value = process.getConcept("R_UF")*process.getConcept("P_CIS");
-		BigDecimal bd = BigDecimal.valueOf(value);
-		bd = bd.setScale(0, RoundingMode.HALF_UP);
-		result = bd.doubleValue();
-		return result;
+		double salarioHora =( process.getConcept("R_SBAS_DAY")*28)/process.getConcept("P_FactorSalHora");
+		double horasExtra = (salarioHora*process.getConcept("P_HorasExtra"))*process.getConcept("O_HorasExtra");
+		double montomanual = process.getConcept("O_HorasExtrasMonto");
+		
+		return horasExtra  ;
 	}
 
 	@Override

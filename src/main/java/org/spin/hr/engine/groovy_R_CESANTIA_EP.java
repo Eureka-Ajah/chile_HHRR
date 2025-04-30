@@ -42,20 +42,18 @@ public class groovy_R_CESANTIA_EP implements RuleInterface {
 
 	@Override
 	public Object run(MHRProcess process, Map<String, Object> engineContext) {
-		
+
 		double result = 0;
 		description = null;
-				description = null;
-				Double cesantiaRate = process.getConcept("P_Cesantia_EP");
-				Double salarioCalculado =  process.getConcept("R_Imponibles");
-				Double max = process.getConcept("R_MaxCesantia");
-				
-					Double base = salarioCalculado > max? max:salarioCalculado;
-				        Double cesantiaTotal =base * cesantiaRate;
-				BigDecimal bd = BigDecimal.valueOf(cesantiaTotal);
-				    bd = bd.setScale(0, RoundingMode.HALF_UP);
-				result =bd.doubleValue() ;
-				return result;
+		Double cesantiaRate = process.getConcept("P_Cesantia_EP");
+		Double salarioCalculado =  process.getConcept("R_Imponibles");
+		Double max = process.getConcept("R_MaxCesantia");
+		Double base = salarioCalculado > max? max:salarioCalculado;
+		Double cesantiaTotal =base * cesantiaRate;
+		BigDecimal bd = BigDecimal.valueOf(cesantiaTotal);
+		bd = bd.setScale(0, RoundingMode.HALF_UP);
+		result =bd.doubleValue() ;
+		return result;
 	}
 
 	@Override
