@@ -67,8 +67,8 @@ public class groovy_R_ISSS_EP implements RuleInterface {
 				if (isPublicHealthInsurance){
 				Double rate =  process.getConcept("P_ISSS_EP");
 				Double SaludRate = process.getConcept("P_ISSS_EP");
-				Double salarioCalculado =process.getConcept("R_Imponibles");
-				Double max = process.getConcept("R_MaxAFPSalud");
+				Double salarioCalculado =process.getConcept("R_ImpR_MaxAFPSaludonibles");
+				Double max = process.getConcept("");
 					Double base = salarioCalculado > max?max:salarioCalculado;
 				saludTotal =base * SaludRate;
 				}
