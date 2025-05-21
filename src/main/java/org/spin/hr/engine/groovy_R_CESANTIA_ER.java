@@ -50,7 +50,8 @@ public class groovy_R_CESANTIA_ER implements RuleInterface {
 				Boolean isFixedContract = contract.get_ValueAsBoolean("isFixedContract");
 				Double cesantiaRate = isFixedContract ? process.getConcept("P_Cesantia_ER_FixedContract"): process.getConcept("P_Cesantia_ER");
 				Double salarioCalculado =  process.getConcept("R_Imponibles");
-				Double max = process.getConcept("R_MaxAFPSalud");
+				//Double max = process.getConcept("R_MaxAFPSalud");
+				Double max = process.getConcept("R_MaxCesantia");
 				Double base = salarioCalculado > max? max:salarioCalculado;    
 				Double cesantiaTotal =base * cesantiaRate;
 				        result = cesantiaTotal ;
